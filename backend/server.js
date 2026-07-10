@@ -6,6 +6,8 @@ import morgan from "morgan";
 import  {connectDB} from "./config/db.js";
 import { notFound, errorHandler } from "./middleware/error.middleware.js";
 
+import authRoutes from "./routes/auth.routes.js";
+
 const app = express()
 
 app.use(
@@ -29,6 +31,8 @@ app.get('/api/health', (req,res) => {
         env: process.env.NODE_ENV
     })
 });
+
+app.use("/api/auth", authRoutes);
 
 app.use(notFound)
 app.use(errorHandler)
