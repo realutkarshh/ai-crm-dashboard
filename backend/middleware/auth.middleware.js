@@ -5,10 +5,10 @@ import jwt from "jsonwebtoken";
 
 export const protect = asyncHandler(async (req, res, next) => {
     let token;
-    const header = req.header.authorization;
+    const header = req.headers.authorization;
 
     if(header && header.startsWith("Bearer ")){
-        token = header.split(" ")[1];   
+        token = header.split(" ")[1];
     }
 
     if(!token){
