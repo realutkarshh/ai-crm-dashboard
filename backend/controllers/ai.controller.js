@@ -63,7 +63,7 @@ export const salesInsights = asyncHandler(async (req,res) => {
 const buildPipelineStats = (leads) => {
     const byStage = {};
     let totalValue = 0;
-    for(const i of leads){
+    for(const l of leads){
         byStage[l.status] = byStage[l.status] || {count: 0, value: 0};
         byStage[l.status].count += 1;
         byStage[l.status].value += l.value || 0;
