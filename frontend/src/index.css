@@ -6,22 +6,22 @@
    soft gray canvas, white cards, forest-green brand accent.
    ───────────────────────────────────────────────────────────── */
 @theme {
-  /* Brand sky-blue scale */
-  --color-brand-50: #f0f9ff;
-  --color-brand-100: #e0f2fe;
-  --color-brand-200: #bae6fd;
-  --color-brand-300: #7dd3fc;
-  --color-brand-400: #38bdf8;
-  --color-brand-500: #0ea5e9;
-  --color-brand-600: #0284c7;
-  --color-brand-700: #0369a1;
-  --color-brand-800: #075985;
-  --color-brand-900: #0c4a6e;
+  /* Brand orange scale */
+  --color-brand-50:  #fff7ed;
+  --color-brand-100: #ffedd5;
+  --color-brand-200: #fed7aa;
+  --color-brand-300: #fdba74;
+  --color-brand-400: #fb923c;
+  --color-brand-500: #f97316;
+  --color-brand-600: #ea580c;
+  --color-brand-700: #c2410c;
+  --color-brand-800: #9a3412;
+  --color-brand-900: #7c2d12;
 
-  /* Semantic surfaces — white canvas, cards defined by a hairline + shadow */
+  /* Semantic surfaces */
   --color-canvas: #ffffff;
   --color-surface: #ffffff;
-  --color-surface-muted: #f1f5f9;
+  --color-surface-muted: #f8fafc;
   --color-ink: #0f172a;
   --color-ink-soft: #64748b;
   --color-line: #e8eef3;
@@ -30,12 +30,17 @@
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-display: "Sora", "Inter", system-ui, sans-serif;
 
-  /* Radii & shadows — soft, rounded SaaS feel */
+  /* Radii & Shadows */
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
   --radius-3xl: 2rem;
-  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px -12px rgba(16, 24, 40, 0.12);
-  --shadow-soft: 0 1px 3px rgba(16, 24, 40, 0.06), 0 1px 2px rgba(16, 24, 40, 0.04);
+
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04),
+                 0 8px 24px -12px rgba(16, 24, 40, 0.12);
+
+  --shadow-soft: 0 1px 3px rgba(16, 24, 40, 0.06),
+                 0 1px 2px rgba(16, 24, 40, 0.04);
+
   --shadow-pop: 0 12px 40px -12px rgba(16, 24, 40, 0.25);
 }
 
