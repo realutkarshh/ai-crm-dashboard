@@ -4,12 +4,12 @@ import { initials } from "../../lib/utils";
 /* Avatar that renders an image when available, otherwise colored initials.
    Color is derived deterministically from the name for a lively, varied look. */
 const palette = [
+  "bg-brand-50 text-brand-700",
   "bg-brand-100 text-brand-700",
-  "bg-sky-100 text-sky-700",
-  "bg-violet-100 text-violet-700",
+  "bg-brand-200 text-brand-800",
   "bg-amber-100 text-amber-700",
+  "bg-orange-100 text-orange-700",
   "bg-rose-100 text-rose-700",
-  "bg-teal-100 text-teal-700",
 ];
 
 function colorFor(name = "") {

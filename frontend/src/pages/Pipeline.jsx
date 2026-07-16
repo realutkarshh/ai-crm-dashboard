@@ -15,7 +15,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Sparkles, GripVertical, Building2, TrendingUp, Layers, Target, DollarSign } from "lucide-react";
+import { Sparkles, GripVertical, Building2, TrendingUp, Layers, Target, IndianRupee } from "lucide-react";
 import { PageHeader } from "../components/common/PageHeader";
 import { Spinner, Avatar, Badge, Card } from "../components/ui";
 import { leadsApi, aiApi } from "../lib/services";
@@ -124,7 +124,7 @@ export default function Pipeline() {
       {/* KPI summary strip */}
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <StatTile
-          icon={DollarSign}
+          icon={IndianRupee}
           tint="bg-brand-50 text-brand-600"
           label="Total pipeline"
           value={currency(totalValue, { compact: true })}

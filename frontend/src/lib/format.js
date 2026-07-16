@@ -1,14 +1,53 @@
 import { format, formatDistanceToNow, isValid } from "date-fns";
 
-/** Format a number as compact USD currency, e.g. 78989 -> "$78,989". */
+/**
+ * Indian rupee formatter — e.g. 150000 → "₹1,50,000".
+ * When compact=true uses Indian abbreviations: K / L / Cr
+ * instead of Western M / B so charts show ₹2.5L, ₹1.2Cr, etc.
+ */
 export function currency(value = 0, { compact = false } = {}) {
   const n = Number(value) || 0;
-  return new Intl.NumberFormat("en-US", {
+  if (compact) return formatCompact(n);
+  return new Intl.NumberFormat("en-IN", {
     style: "currency",
     currency: "INR",
-    notation: compact ? "compact" : "standard",
-    maximumFractionDigits: compact ? 1 : 0,
+    maximumFractionDigits: 0,
   }).format(n);
+}
+
+/**
+ * Smart Indian abbreviation:
+ *   < 1 000        → ₹500
+ *   1 000–99 999   → ₹2.5K
+ *   1 00 000–      → ₹2.5L
+ *   1 00 00 000+   → ₹1.2Cr
+ */
+export function formatCompact(value = 0) {
+  const n = Number(value) || 0;
+  const abs = Math.abs(n);
+  const sign = n < 0 ? "-" : "";
+  if (abs >= 1_00_00_000) {
+    const v = abs / 1_00_00_000;
+    return `${sign}₹${+v.toFixed(2)}Cr`;
+  }
+  if (abs >= 1_00_000) {
+    const v = abs / 1_00_000;
+    return `${sign}₹${+v.toFixed(2)}L`;
+  }
+  if (abs >= 1_000) {
+    const v = abs / 1_000;
+    return `${sign}₹${+v.toFixed(1)}K`;
+  }
+  return `${sign}₹${abs}`;
+}
+
+/**
+ * Plain Indian number format (no currency symbol):
+ *   1234567 → "12,34,567"
+ */
+export function formatNumber(value = 0) {
+  const n = Number(value) || 0;
+  return new Intl.NumberFormat("en-IN").format(n);
 }
 
 /** Short, human date: "16 Jun 2025". */

@@ -23,22 +23,22 @@ export const mockUser = {
 
 /* Each maker returns a FRESH array so the in-memory store can be reset cleanly. */
 export const makeLeads = () => [
-  lead("l1", "Dribbble Design", "Acme Corp", "New", "High", "Website", 89345, 8),
-  lead("l2", "Google Pay", "Globex", "Qualified", "High", "Referral", 124000, 20),
-  lead("l3", "Amazon Shopping", "Initech", "Proposal", "Medium", "Cold Outreach", 32123, 35),
-  lead("l4", "Stripe", "Umbrella Co", "Won", "High", "Event", 76500, 60),
-  lead("l5", "Notion", "Soylent", "New", "Low", "Social", 12400, 4),
-  lead("l6", "Figma", "Hooli", "Qualified", "Medium", "Website", 54000, 14),
-  lead("l7", "Linear", "Pied Piper", "Proposal", "High", "Referral", 98000, 28),
-  lead("l8", "Slack", "Vehement", "Lost", "Low", "Cold Outreach", 21000, 95),
-  lead("l9", "Vercel", "Massive Dynamic", "Won", "High", "Referral", 143000, 110),
-  lead("l10", "Airtable", "Wayne Ent.", "Qualified", "High", "Event", 67000, 18),
-  lead("l11", "Datadog", "Stark Industries", "New", "Medium", "Website", 45000, 2),
-  lead("l12", "Snowflake", "Cyberdyne", "Proposal", "High", "Referral", 152000, 48),
-  lead("l13", "HubSpot", "Tyrell Corp", "Won", "Medium", "Event", 88000, 150),
-  lead("l14", "Asana", "Aperture Labs", "Qualified", "Low", "Social", 30000, 22),
-  lead("l15", "Zoom", "Oscorp", "New", "Medium", "Cold Outreach", 26000, 6),
-  lead("l16", "GitLab", "LexCorp", "Lost", "Low", "Website", 18000, 70),
+  lead("l1", "Dribbble Design", "Acme Corp", "New", "High", "Website", 893450, 8),
+  lead("l2", "Google Pay", "Globex", "Qualified", "High", "Referral", 1240000, 20),
+  lead("l3", "Amazon Shopping", "Initech", "Proposal", "Medium", "Cold Outreach", 321230, 35),
+  lead("l4", "Stripe", "Umbrella Co", "Won", "High", "Event", 765000, 60),
+  lead("l5", "Notion", "Soylent", "New", "Low", "Social", 124000, 4),
+  lead("l6", "Figma", "Hooli", "Qualified", "Medium", "Website", 540000, 14),
+  lead("l7", "Linear", "Pied Piper", "Proposal", "High", "Referral", 980000, 28),
+  lead("l8", "Slack", "Vehement", "Lost", "Low", "Cold Outreach", 210000, 95),
+  lead("l9", "Vercel", "Massive Dynamic", "Won", "High", "Referral", 1520000, 110),
+  lead("l10", "Airtable", "Wayne Ent.", "Qualified", "High", "Event", 670000, 18),
+  lead("l11", "Datadog", "Stark Industries", "New", "Medium", "Website", 450000, 2),
+  lead("l12", "Snowflake", "Cyberdyne", "Proposal", "High", "Referral", 1520000, 48),
+  lead("l13", "HubSpot", "Tyrell Corp", "Won", "Medium", "Event", 880000, 150),
+  lead("l14", "Asana", "Aperture Labs", "Qualified", "Low", "Social", 300000, 22),
+  lead("l15", "Zoom", "Oscorp", "New", "Medium", "Cold Outreach", 260000, 6),
+  lead("l16", "GitLab", "LexCorp", "Lost", "Low", "Website", 180000, 70),
 ];
 
 function lead(_id, name, company, status, priority, source, value, ageDays) {

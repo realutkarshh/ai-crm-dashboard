@@ -47,7 +47,14 @@ import { useAuth } from "../context/AuthContext";
 import { cn } from "../lib/utils";
 
 /* Donut palette — sky-blue family used for the "Leads by Source" chart. */
-const SOURCE_COLORS = ["#0ea5e9", "#38bdf8", "#0369a1", "#7dd3fc", "#0284c7", "#bae6fd"];
+const SOURCE_COLORS = [
+  "#F97316", // orange-500
+  "#FB923C", // orange-400
+  "#C2410C", // orange-700
+  "#FDBA74", // orange-300
+  "#EA580C", // orange-600
+  "#FED7AA", // orange-200
+];
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -427,8 +434,8 @@ function EngagementChart({ trend }) {
     const cx = x + width / 2;
     return (
       <g>
-        <circle cx={cx} cy={y} r={5} fill="#0369a1" stroke="#fff" strokeWidth={2} />
-        <rect x={cx - 26} y={y - 34} width={52} height={22} rx={11} fill="#0369a1" />
+        <circle cx={cx} cy={y} r={5} fill="#EA580C" stroke="#fff" strokeWidth={2} />
+        <rect x={cx - 26} y={y - 34} width={52} height={22} rx={11} fill="#EA580C" />
         <text x={cx} y={y - 19} textAnchor="middle" fontSize="11" fontWeight="700" fill="#fff">
           +{growth}%
         </text>
@@ -457,7 +464,7 @@ function EngagementChart({ trend }) {
         <Tooltip cursor={{ fill: "#f1f5f9" }} content={<ChartTooltip unit=" leads" />} />
         <Bar dataKey="leads" radius={[14, 14, 14, 14]} maxBarSize={42} label={renderPeak}>
           {trend.map((t, i) => (
-            <Cell key={i} fill={i === maxIndex ? "#0369a1" : "#bae6fd"} />
+            <Cell key={i} fill={i === maxIndex ? "#EA580C" : "#FED7AA"} />
           ))}
         </Bar>
       </BarChart>
@@ -468,15 +475,26 @@ function EngagementChart({ trend }) {
 function BalanceChart({ trend }) {
   return (
     <ResponsiveContainer width="100%" height={120}>
-      <AreaChart data={trend} margin={{ top: 14, right: 0, left: 0, bottom: 0 }}>
+      <AreaChart
+        data={trend}
+        margin={{ top: 14, right: 0, left: 0, bottom: 0 }}
+      >
         <defs>
           <linearGradient id="balance" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#0ea5e9" stopOpacity={0.3} />
-            <stop offset="100%" stopColor="#0ea5e9" stopOpacity={0} />
+            <stop offset="0%" stopColor="#F97316" stopOpacity={0.3} />
+            <stop offset="100%" stopColor="#F97316" stopOpacity={0} />
           </linearGradient>
         </defs>
-        <Tooltip content={<ChartTooltip prefix="$" />} />
-        <Area type="monotone" dataKey="won" stroke="#0284c7" strokeWidth={2.5} fill="url(#balance)" />
+
+        <Tooltip content={<ChartTooltip prefix="₹" />} />
+
+        <Area
+          type="monotone"
+          dataKey="won"
+          stroke="#EA580C"
+          strokeWidth={2.5}
+          fill="url(#balance)"
+        />
       </AreaChart>
     </ResponsiveContainer>
   );
@@ -489,7 +507,7 @@ function ChartTooltip({ active, payload, label, prefix = "", unit = "" }) {
       <p className="text-xs font-medium text-ink-soft">{label}</p>
       <p className="text-sm font-semibold text-ink">
         {prefix}
-        {Number(payload[0].value).toLocaleString()}
+        {Number(payload[0].value).toLocaleString("en-IN")}
         {unit}
       </p>
     </div>
