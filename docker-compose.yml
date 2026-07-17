@@ -1,0 +1,128 @@
+# ============================================================
+# Docker Compose - CRM Dashboard
+#
+# Start:
+#   docker compose up --build
+#
+# Stop:
+#   docker compose down
+#
+# Stop and remove database:
+#   docker compose down -v
+# ============================================================
+
+version: "3.9"
+
+# ------------------------------------------------------------
+# Named Volumes
+# ------------------------------------------------------------
+# Docker stores MongoDB data here so your database is not lost
+# when containers are recreated.
+volumes:
+  mongo-data:
+
+# ------------------------------------------------------------
+# Networks
+# ------------------------------------------------------------
+# All services communicate over this private Docker network.
+networks:
+  crm-network:
+    driver: bridge
+
+services:
+
+  # ==========================================================
+  # MongoDB Database
+  # ==========================================================
+  mongodb:
+    image: mongo:7
+
+    restart: unless-stopped
+
+    ports:
+      # Allows MongoDB Compass to connect from your computer.
+      - "27017:27017"
+
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: crm_admin
+      MONGO_INITDB_ROOT_PASSWORD: crm_password
+      MONGO_INITDB_DATABASE: crm
+
+    volumes:
+      # Persist MongoDB data.
+      - mongo-data:/data/db
+
+    networks:
+      - crm-network
+
+    healthcheck:
+      # Docker waits until MongoDB is ready before starting
+      # the backend.
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  # ==========================================================
+  # Node.js Backend
+  # ==========================================================
+  backend:
+
+    build:
+      context: ./backend
+
+    restart: unless-stopped
+
+    depends_on:
+      mongodb:
+        condition: service_healthy
+
+    # Load all variables from backend/.env
+    env_file:
+      - ./backend/.env
+
+    environment:
+      # Variables under environment: override variables loaded from env_file that is why the following variables are declared here again
+      # Override only the variables that are different inside Docker.
+
+      PORT: 8000
+
+      # Inside Docker, NEVER use localhost for MongoDB.
+      # Docker automatically resolves "mongodb" to the Mongo container.
+      MONGO_URI: mongodb://crm_admin:crm_password@mongodb:27017/crm?authSource=admin
+
+      CLIENT_URL: http://localhost:5173
+
+      # Since you're still running "npm run dev"
+      NODE_ENV: development
+
+    ports:
+      - "8000:8000"
+
+    networks:
+      - crm-network
+
+  # ==========================================================
+  # React Frontend
+  # ==========================================================
+  frontend:
+
+    build:
+      context: ./frontend
+
+    restart: unless-stopped
+
+    depends_on:
+      - backend
+
+    environment:
+
+      # This URL is used by the browser, not Docker.
+      VITE_API_URL: http://localhost:8000/api
+
+    ports:
+      - "5173:5173"
+
+    networks:
+      - crm-network
