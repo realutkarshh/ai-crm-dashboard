@@ -1,0 +1,41 @@
+# Production docker-compose file
+# used for deploying the application to a production server (Oracle VPS)
+
+services:
+
+  # Backend
+  backend:
+
+    image: realutkarshh/ai-crm-backend:0.2
+
+    container_name: crm-backend
+
+    restart: unless-stopped
+
+    env_file:
+      - ./backend/.env.production
+
+    ports:
+      - "8000:8000"
+
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Frontend
+  frontend:
+
+    image: realutkarshh/ai-crm-frontend:0.2
+
+    container_name: crm-frontend
+
+    restart: unless-stopped
+
+    depends_on:
+      backend:
+        condition: service_healthy
+
+    ports:
+      - "80:80"
