@@ -2,7 +2,7 @@ services:
 
   backend:
 
-    image: realutkarshh/ai-crm-backend:${BACKEND_TAG}
+    image: realutkarshh/ai-crm-backend:latest
 
     container_name: crm-backend
 
@@ -22,7 +22,7 @@ services:
 
   frontend:
 
-    image: realutkarshh/ai-crm-frontend:${FRONTEND_TAG}
+    image: realutkarshh/ai-crm-frontend:latest
 
     container_name: crm-frontend
 
