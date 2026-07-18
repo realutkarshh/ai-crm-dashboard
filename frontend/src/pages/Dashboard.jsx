@@ -84,7 +84,7 @@ export default function Dashboard() {
       {/* Title row */}
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <h1 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-[2.5rem]">
-          Welcome Back, <span className="text-ink-soft">{user?.name?.split(" ")[0]}</span>
+          Let's get to work, <span className="text-ink-soft">{user?.name?.split(" ")[0]}</span>
         </h1>
         <div className="flex items-center gap-3">
           <div className="hidden items-center gap-2 rounded-full bg-surface px-4 py-2.5 text-sm font-medium text-ink-soft shadow-[var(--shadow-soft)] sm:flex">

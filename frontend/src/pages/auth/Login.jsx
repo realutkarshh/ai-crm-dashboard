@@ -24,7 +24,7 @@ export default function Login() {
     setSubmitting(true);
     try {
       const user = await login(data);
-      toast.success(`Welcome back, ${user.name.split(" ")[0]} 👋`);
+      toast.success(`Welcome back, ${user.name.split(" ")[0]}`);
       navigate(location.state?.from?.pathname || "/", { replace: true });
     } catch (err) {
       toast.error(err.message || "Login failed");
