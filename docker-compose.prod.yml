@@ -41,3 +41,7 @@ services:
 
     networks:
       - default
+
+networks:
+  monitoring-net:
+    external: true
